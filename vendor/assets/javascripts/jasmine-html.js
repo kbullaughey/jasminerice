@@ -10,7 +10,11 @@ jasmine.HtmlReporterHelpers.createDom = function(type, attrs, childrenVarArgs) {
       el.appendChild(document.createTextNode(child));
     } else {
       if (child) {
-        el.appendChild(child);
+        if (child instanceof Error) {
+          el.appendChild(document.createTextNode(child.toString()));
+        } else {
+          el.appendChild(child);
+        }
       }
     }
   }
